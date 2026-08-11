@@ -3,6 +3,9 @@ import "dotenv/config"
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
 
+const CLARITY_PROJECT_ID = process.env.CLARITY_PROJECT_ID
+
+
 const config: GatsbyConfig = {
   siteMetadata: {
     // You can overwrite values here that are used for the SEO component
@@ -23,6 +26,16 @@ const config: GatsbyConfig = {
       resolve: `@lekoarts/gatsby-theme-cara`,
       // See the theme's README for all available options
       options: {},
+    },
+    {
+      resolve: `gatsby-plugin-clarity`,
+      options: {
+        // String value for your clarity project ID
+        clarity_project_id: `${CLARITY_PROJECT_ID}`,
+        // true enables the tracking code on both development and production
+        // false enables it on production only
+        enable_on_dev_env: true,
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
